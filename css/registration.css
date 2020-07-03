@@ -1,0 +1,7 @@
+.li {
+    border : 1px solid;
+    margin:  1em;
+    background-color: dodgerblue;
+    padding: 1em;
+    border-radius: 0.25em;
+}
