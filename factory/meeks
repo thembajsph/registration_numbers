@@ -1,0 +1,8 @@
+function validate(reg){
+		if(/C[ALJ] \d{3,5}$/.test(reg) || /C[ALJ] \d+\s|-\d+$/.test(reg)){
+			return reg;
+			
+		} else{
+			return false;
+		}
+	}	

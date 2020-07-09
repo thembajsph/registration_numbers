@@ -1,7 +1,7 @@
  function numberReg() {
-     alert(numberReg);
-var newArray = [];
-
+    // alert(numberReg);
+var newArray = reg || [];
+//var greetedNames = strings || []
 function storeArray(reg) {
 
 if (!newArray.includes(reg)) {
@@ -11,7 +11,7 @@ newArray.push(reg)
 
 function filtero(reg , location) {
     var regTownArr = [];
-// loop over reg then check then if it matches the loca
+// loop over reg then check then if it matches the locaL
 for (let i = 0; i < reg.length; i++) {
 
     if (reg.startsWith(location)) {
@@ -31,8 +31,8 @@ function cpt(reg) {
         }
 
     }
- console.log(regTownArr);
-    //return regTownArr;
+ //console.log(regTownArr);
+    return cptList;
 }
 
 
@@ -46,8 +46,8 @@ function paarl() {
         }
 
     }
-    console.log(regTownArr)
-//return regTownArr;
+    //console.log(regTownArr)
+return paarlList
 }
 
 function bellville() {
@@ -59,17 +59,22 @@ function bellville() {
         }
 
     }
-    console.log(regTownArr);
-    //return regTownArr;
+   // console.log(regTownArr);
+    return bellvilleList;
 }
-
+function story() {
+    // return greetedNames.length;
+    //first part
+    return Object.keys(newArray).length;
+}
 
 return {
     storeArray,
     filtero,
     cpt,
     paarl,
-    bellville
+    bellville,
+    story
 }
 };
 
