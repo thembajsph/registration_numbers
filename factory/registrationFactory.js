@@ -1,27 +1,28 @@
 function numberReg(reg) {  // <= you can pass a value here that can be accessed by the rest of the functions within your code
     // alert(numberReg);
     
-    var newArray = reg || {}; // or set , check whether reg has data and use that or else set an empty array 
+    var newArray = reg || []; // or set , check whether reg has data and use that or else set an empty array 
     
     
     //var greetedNames = strings || []
     function storeArray(reg) {
 
-        if (!newArray.includes(reg)) {
+        if (!newArray.includes(reg)) { // stores in and checking for duplucates
             newArray.push(reg)
         }
     }
+
 //local bring back data local and checks , on the list for 
     function filtero(location) {
         var regTownArr = [];
-        var bringBack = Object.keys(reg);
+       // var bringBack = Object.keys(reg);
 
         //var townsValue = dropy.value
         // loop over reg then check then if it matches the locaL
-        for (let i = 0; i < bringBack.length; i++) {
+        for (let i = 0; i < newArray.length; i++) {
 
-            if (bringBack[i].startsWith(location)) {
-                regTownArr.push(bringBack[i])
+            if (newArray[i].startsWith(location)) {    //filtering only Ca 
+                regTownArr.push(newArray[i])
             }
         }
         //console.log(regTownArr)
@@ -32,19 +33,20 @@ function numberReg(reg) {  // <= you can pass a value here that can be accessed 
 
 
 
-//function allReadtExists() {
+function broughBackArray() {
 
+return newArray   // connected to top one 
 
+};
 
-//var alredyIn = []
 
 //}
 
 
     //function allTown(reg) {
-     //   var vilter = [];
-     //   for (let i = 0; i < newArray.length; i++) {
-         //   if (reg.startsWith("CA") || reg.startsWith("CJ") || reg.startsWith("CY")) {
+      // var vilter = [];
+      // for (let i = 0; i < newArray.length; i++) {
+         //  if (reg.startsWith("CA") || reg.startsWith("CJ") || reg.startsWith("CY")) {
           //      vilter.push(reg)
                 //regTownArr.push(cptList)  
             //}
@@ -104,6 +106,7 @@ function numberReg(reg) {  // <= you can pass a value here that can be accessed 
     return {
         storeArray,
         filtero,
+        broughBackArray,
       //  allReadtExists
       //  allTown,
        // story

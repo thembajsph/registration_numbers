@@ -1,7 +1,8 @@
 const framzo = document.querySelector(".enterReg");
 const regButton = document.querySelector(".addBtn");
-const dropy = document.querySelector(".dropBox");
-const theList = document.getElementById("tello");
+const radioButtonElem = document.querySelector(".selectTown")
+//const dropBoxElem = document.querySelector(".dropBox");
+const theList = document.getElementById("listItem");
 const errorMessage = document.querySelector(".error");
 const dropDownBtnElem = document.querySelector(".dropDownBtn");
 
@@ -14,7 +15,7 @@ together to do some processing in the background
 
 
 // if theres something it will put on local storage or return an array
-var data = localStorage.getItem("reg") ? JSON.parse(localStorage.getItem("reg")) : {};
+var data = localStorage.getItem("reg") ? JSON.parse(localStorage.getItem("reg")) : [];
 
 // # Iternary operator (<compare1 == compare2>) ? <what program should do if true> : <what program should do if false>
 // # localStorage is data that can be stored on the web browser session. It's built in
@@ -26,7 +27,10 @@ var data = localStorage.getItem("reg") ? JSON.parse(localStorage.getItem("reg"))
 var lineDataHolder = data
 
 var instance = numberReg(data); // send data to factory function #Note: best to use same parameter names when sending to function 
-var townsValue = dropy.value;
+
+//var townsValue = dropBoxElem.value;
+var townsValue = radioButtonElem.value;
+//console.log(dropboxElem.selectedIndex);
 
 function addMe() {
 
@@ -36,15 +40,28 @@ function addMe() {
   // flow should be get user input => verify => process => store
   // html has some built in functionality to set input length but you can also create your own js to do those checks
 
-
+// value text box
   var regTown = framzo.value;
-  //theList.innerHTML = "";
+
+  // storing registrations 
+instance.storeArray(regTown);
+var fromFactoryFact = instance.broughBackArray();
+
+ theList.innerHTML = "";
+
+// to get each reg loop over
+for (var i= 0 ; i< fromFactoryFact.length; i++) {
+ 
+
+ 
   // var subString = regNum.substring(0,2);
   var li = document.createElement("li")
-  li.innerHTML = regTown;
+  li.innerHTML = fromFactoryFact[i];
   li.classList.add("color");
   theList.appendChild(li);
 
+
+}
   local();
 
 
@@ -60,12 +77,16 @@ function addMe() {
     errorMessage.innerHTML = "please do select the correct town"
   }
 
+
+
+
+  //theList.innerHTML = "";
   function local() {
+ 
 
     if (lineDataHolder[regTown]) {
 
-      // theList.innerHTML = "";
-      return errorMessage.innerHTML = "already in local storage"
+  return errorMessage.innerHTML = "already in local storage"
 
     }
     else {
@@ -76,14 +97,7 @@ function addMe() {
 
     //local storage store  , what it should stringify 
     localStorage.setItem("reg", JSON.stringify(lineDataHolder));
-
-    var newLine =  lineDataHolder[regTown];
   
-    var li = document.createElement("li")
-    li.innerHTML = newLine[i];
-    li.classList.add("color");
-    theList.appendChild(li);
-
   }
 
 };
@@ -92,14 +106,27 @@ function addMe() {
 
 function cleaningTowns() {
 
- theList.innerHTML = "";
-  var fromFactory = instance.filtero(townsValue) //our towns we want to filter
+ // dropboxElem.addEventListener("change", function() {
+  //  console.log(townsValue);
+ // });
+
+
+alert(townsValue);
+
+ //theList.innerHTML = "";
+
+ 
+  if (townsValue) {
+
+    var fromFactory = instance.filtero(townsValue) //our towns we want to filter
+
   for (var i = 0; i < fromFactory.length; i++) {
+
     var li = document.createElement("li")
     li.innerHTML = fromFactory[i];
     li.classList.add("color");
     theList.appendChild(li);
-
+  }
   }
 };
 
@@ -124,6 +151,9 @@ function cleaningTowns() {
 };
 
 //noDuplicate();*/
+
+
+
 regButton.addEventListener("click", addMe);
 dropDownBtnElem.addEventListener("click", cleaningTowns);
 
