@@ -20,7 +20,7 @@
 
             <label for="">registration number:</label>
             <form>
-                <input type="text" id="textfield2" name="" value="" placeholder="enter your registration..."
+                <input type="text" id="textfield2" name="" pattern="[A-Za-z]{2}- /\d{3}-\d{3}/g"; value="" placeholder="enter your registration..."
                     class="enterReg">
             </form>
         </div>
@@ -29,6 +29,7 @@
             <div class="addRegBtn row col-3 center ">
 
                 <button class="addBtn" type="submit" name="button">Add reg</button>
+                <button class="dropDownBtn" type="submit" name="button">apply filter</button>
             </div>
 
 

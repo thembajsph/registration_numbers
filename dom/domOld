@@ -1,0 +1,87 @@
+const framzo = document.querySelector(".enterReg");
+const regButton = document.querySelector(".addBtn");
+const dropy = document.querySelector(".dropBox");
+const theList = document.getElementById("tello");
+const errorMessage = document.querySelector(".error");
+
+// if theres something it will put on local storage or return an array
+var data = localStorage.getItem("reg") ? JSON.parse(localStorage.getItem("reg")): [];
+var lineDataHolder = data
+
+var instance = numberReg(data);
+
+
+function addMe() {
+  
+ 
+
+ // get the name of text value
+ //var stringValue = textElem.value;
+ //var name = stringValue.charAt(0).toUpperCase() + stringValue.slice(1).toLowerCase();
+ //  alert(name);
+ //string.charAt(0).toUpperCase() + string.slice(1)
+ //var numbBack = instance.hasNumbers(name)
+
+
+
+
+ var regex = /\d/g;
+ //var regex2 = /[!@#$%^&*(),.;-_'"?":{}|<>]-[ A-Za-z]/g;
+ var regex2 = /\d{3}-\d{3}/g;
+ errorMessage.classList.remove("red");
+
+ if (!regNum.match(regex) && !regNum.match(regex2)) {
+  
+ // instance.storeArray();
+  //alert(framzo.value);
+  //if (framzo.value.length == 0 ) {
+  //  return 
+
+
+  //}
+  var li = document.createElement("li")
+  
+  var regNum = framzo.value;
+  var townsValue = dropy.value
+  var subString = regNum.substring(0,2);
+  local();
+  if (framzo.value === "") { 
+    errorMessage.innerHTML= "please do include a registration number..."
+    errorMessage.classList.add("red");
+  }
+  
+
+ else if (subString === townsValue) {
+    li.innerHTML = regNum
+    instance.allTown();
+    li.classList.add("color");
+    theList.appendChild(li);
+  }
+  else if (!framzo.length === 0 && framzo.value === framzo.value) {
+   li.innerHTML = ""
+  }
+
+   else {
+    errorMessage.innerHTML = "please do select the correct town"
+    errorMessage.classList.add("red");
+  }
+ 
+
+
+  function local(){
+   // instance.story();
+
+instance.storeArray(framzo.value)
+    //local storage store  , what it should stringify 
+    localStorage.setItem("reg", JSON.stringify(instance.story()));
+  };
+  
+
+
+ 
+
+}
+};
+regButton.addEventListener("click", addMe);
+
+
