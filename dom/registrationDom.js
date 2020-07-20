@@ -1,7 +1,7 @@
-const framzo = document.querySelector(".enterReg");
+const textBoxElem = document.querySelector(".enterReg");
 const regButton = document.querySelector(".addBtn");
-const radioButtonElem = document.querySelector(".selectTown")
-//const dropBoxElem = document.querySelector(".dropBox");
+//const radioButtonElem = document.querySelector(".selectTown")
+const dropBoxElem = document.querySelector(".dropBox");
 const theList = document.getElementById("listItem");
 const errorMessage = document.querySelector(".error");
 const dropDownBtnElem = document.querySelector(".dropDownBtn");
@@ -29,7 +29,8 @@ var lineDataHolder = data
 var instance = numberReg(data); // send data to factory function #Note: best to use same parameter names when sending to function 
 
 //var townsValue = dropBoxElem.value;
-var townsValue = radioButtonElem.value;
+var townsValue = dropBoxElem.options[dropBoxElem.selectedIndex].value;
+
 //console.log(dropboxElem.selectedIndex);
 
 function addMe() {
@@ -41,7 +42,7 @@ function addMe() {
   // html has some built in functionality to set input length but you can also create your own js to do those checks
 
 // value text box
-  var regTown = framzo.value;
+  var regTown = textBoxElem.value;
 
   // storing registrations 
 instance.storeArray(regTown);
@@ -66,7 +67,7 @@ for (var i= 0 ; i< fromFactoryFact.length; i++) {
 
 
   //else if (subString === townsValue) {
-  if (framzo.value === "") {
+  if (textBoxElem === "") {
     //theList.innerHTML = "";
 
     errorMessage.innerHTML = "please do include a registration number..."
@@ -102,16 +103,13 @@ for (var i= 0 ; i< fromFactoryFact.length; i++) {
 
 };
 
-
-
 function cleaningTowns() {
 
  // dropboxElem.addEventListener("change", function() {
   //  console.log(townsValue);
  // });
 
-
-alert(townsValue);
+alert( dropBoxElem.options[dropBoxElem.selectedIndex].value);
 
  //theList.innerHTML = "";
 
@@ -120,13 +118,13 @@ alert(townsValue);
 
     var fromFactory = instance.filtero(townsValue) //our towns we want to filter
 
-  for (var i = 0; i < fromFactory.length; i++) {
-
+  //for (var i = 0; i < fromFactory.length; i++) {
     var li = document.createElement("li")
-    li.innerHTML = fromFactory[i];
+    li.innerHTML = fromFactory
     li.classList.add("color");
     theList.appendChild(li);
-  }
+
+  //}
   }
 };
 
