@@ -41,28 +41,28 @@ function addMe() {
   // flow should be get user input => verify => process => store
   // html has some built in functionality to set input length but you can also create your own js to do those checks
 
-// value text box
+  // value text box
   var regTown = textBoxElem.value;
 
   // storing registrations 
-instance.storeArray(regTown);
-var fromFactoryFact = instance.broughBackArray();
+  instance.storeArray(regTown);
+  var fromFactoryFact = instance.broughBackArray();
 
- theList.innerHTML = "";
+  theList.innerHTML = "";
 
-// to get each reg loop over
-for (var i= 0 ; i< fromFactoryFact.length; i++) {
- 
-
- 
-  // var subString = regNum.substring(0,2);
-  var li = document.createElement("li")
-  li.innerHTML = fromFactoryFact[i];
-  li.classList.add("color");
-  theList.appendChild(li);
+  // to get each reg loop over
+  for (var i = 0; i < fromFactoryFact.length; i++) {
 
 
-}
+
+    // var subString = regNum.substring(0,2);
+    var li = document.createElement("li")
+    li.innerHTML = fromFactoryFact[i];
+    li.classList.add("color");
+    theList.appendChild(li);
+
+
+  }
   local();
 
 
@@ -83,11 +83,11 @@ for (var i= 0 ; i< fromFactoryFact.length; i++) {
 
   //theList.innerHTML = "";
   function local() {
- 
+
 
     if (lineDataHolder[regTown]) {
 
-  return errorMessage.innerHTML = "already in local storage"
+      return errorMessage.innerHTML = "already in local storage"
 
     }
     else {
@@ -98,34 +98,36 @@ for (var i= 0 ; i< fromFactoryFact.length; i++) {
 
     //local storage store  , what it should stringify 
     localStorage.setItem("reg", JSON.stringify(lineDataHolder));
-  
+
   }
 
 };
 
 function cleaningTowns() {
 
- // dropboxElem.addEventListener("change", function() {
+  // dropboxElem.addEventListener("change", function() {
   //  console.log(townsValue);
- // });
+  // });
 
-alert( dropBoxElem.options[dropBoxElem.selectedIndex].value);
+  alert(dropBoxElem.options[dropBoxElem.selectedIndex].value);
 
- //theList.innerHTML = "";
 
- 
-  if (townsValue) {
+  const currentTown = dropBoxElem.options[dropBoxElem.selectedIndex].value;
 
-    var fromFactory = instance.filtero(townsValue) //our towns we want to filter
+  // if (currentTown) {
+    theList.innerHTML = "";
 
-  //for (var i = 0; i < fromFactory.length; i++) {
-    var li = document.createElement("li")
-    li.innerHTML = fromFactory
-    li.classList.add("color");
-    theList.appendChild(li);
+    var fromFactory = instance.filtero(currentTown) //our towns we want to filter
 
-  //}
-  }
+    for (var i = 0; i < fromFactory.length; i++) {
+
+      var li = document.createElement("li")
+      li.innerHTML = fromFactory[i]
+      li.classList.add("color");
+      theList.appendChild(li);
+
+    }
+  // }
 };
 
 /*function noDuplicate(location, reg) {
@@ -146,9 +148,7 @@ alert( dropBoxElem.options[dropBoxElem.selectedIndex].value);
   li.innerHTML = regTownArr[i];
   li.classList.add("color");
   theList.appendChild(li);
-};
-
-//noDuplicate();*/
+};*/
 
 
 
