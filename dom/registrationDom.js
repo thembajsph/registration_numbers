@@ -55,15 +55,16 @@ function addMe() {
     theList.appendChild(li);
 
     local();
-  }
+  };
 
   function local() {
 
     if (lineDataHolder[regTown]) {
 
-      return errorMessage.innerHTML = //"Registration has already been added, try a different one!"
+      return errorMessage.innerHTML = ""
 
     }
+
     else {
       lineDataHolder[regTown
       ] = 1;
