@@ -1,6 +1,5 @@
-const textBoxElem = document.querySelector(".enterReg");
 const regButton = document.querySelector(".addBtn");
-//const radioButtonElem = document.querySelector(".selectTown")
+const textBoxElem = document.querySelector(".enterReg");
 const dropBoxElem = document.querySelector(".dropBox");
 const theList = document.getElementById("listItem");
 const errorMessage = document.querySelector(".error");
@@ -13,7 +12,6 @@ bundle functionality together and can be called to evaluate things on the front 
 together to do some processing in the background
 */
 
-
 // if theres something it will put on local storage or return an array
 var data = localStorage.getItem("reg") ? JSON.parse(localStorage.getItem("reg")) : [];
 
@@ -21,8 +19,6 @@ var data = localStorage.getItem("reg") ? JSON.parse(localStorage.getItem("reg"))
 // # localStorage is data that can be stored on the web browser session. It's built in
 // # Json.parse() converts a json string to a javascript object
 // # Json.stringify() converts a javascript object to a json string
-
-
 
 var lineDataHolder = data
 
@@ -44,50 +40,28 @@ function addMe() {
   // value text box
   var regTown = textBoxElem.value;
 
+  var regex = /C[AYJ] \d{3,5}$/.test(regTown) || /C[AYJ] \d+\s|-\d+$/.test(regTown) && /^[A-Z0-9].{1,9}$/.test(regTown)
+
   // storing registrations 
-  instance.storeArray(regTown);
   var fromFactoryFact = instance.broughBackArray();
 
-  theList.innerHTML = "";
-
-  // to get each reg loop over
-  for (var i = 0; i < fromFactoryFact.length; i++) {
+  if (regTown !== "" && !lineDataHolder.includes(regTown) && regex) {
+    instance.storeArray(regTown);
 
 
-
-    // var subString = regNum.substring(0,2);
     var li = document.createElement("li")
-    li.innerHTML = fromFactoryFact[i];
+    li.innerHTML = regTown
     li.classList.add("color");
     theList.appendChild(li);
 
-
-  }
-  local();
-
-
-  //else if (subString === townsValue) {
-  if (textBoxElem === "") {
-    //theList.innerHTML = "";
-
-    errorMessage.innerHTML = "please do include a registration number..."
+    local();
   }
 
-  else if (townsValue = "") {
-
-    errorMessage.innerHTML = "please do select the correct town"
-  }
-
-
-
-
-  //theList.innerHTML = "";
   function local() {
-
 
     if (lineDataHolder[regTown]) {
 
-      return errorMessage.innerHTML = "already in local storage"
+      return errorMessage.innerHTML = //"Registration has already been added, try a different one!"
 
     }
     else {
@@ -105,18 +79,13 @@ function addMe() {
 
 function cleaningTowns() {
 
-  // dropboxElem.addEventListener("change", function() {
-  //  console.log(townsValue);
-  // });
-
-  alert(dropBoxElem.options[dropBoxElem.selectedIndex].value);
-
+  //alert(dropBoxElem.options[dropBoxElem.selectedIndex].value);
 
   const currentTown = dropBoxElem.options[dropBoxElem.selectedIndex].value;
 
-  // if (currentTown) {
-    theList.innerHTML = "";
+  if (currentTown) {
 
+    theList.innerHTML = "";
     var fromFactory = instance.filtero(currentTown) //our towns we want to filter
 
     for (var i = 0; i < fromFactory.length; i++) {
@@ -127,31 +96,24 @@ function cleaningTowns() {
       theList.appendChild(li);
 
     }
-  // }
-};
-
-/*function noDuplicate(location, reg) {
-  instance.filtero();
-  var regiTownArr = [];
-  var bringItBack = Object.keys(reg);
-
-  //var townsValue = dropy.value
-  // loop over reg then check then if it matches the locaL
-  for (let i = 0; i < bringItBack.length; i++) {
-
-    if (bringBack[i].startsWith(location)) {
-      regTownArr.push(bringItBack[i])
-    }
   }
-  
-  //console.log(regTownArr)
-  li.innerHTML = regTownArr[i];
-  li.classList.add("color");
-  theList.appendChild(li);
-};*/
-
-
+};
 
 regButton.addEventListener("click", addMe);
 dropDownBtnElem.addEventListener("click", cleaningTowns);
 
+
+
+// #EXTRA NOTES
+
+//  function noDuplicate(location, reg) {
+//   instance.filtero();
+//    var regiTownArr = [];
+//    var bringItBack = Object.keys(reg);
+
+//   //var townsValue = dropy.value
+//   // loop over reg then check then if it matches the locaL
+//   for (let i = 0; i < bringItBack.length; i++) {
+//     if (bringBack[i].startsWith(location)) {
+//       regTownArr.push(bringItBack[i])
+//     }
