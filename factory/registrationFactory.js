@@ -29,13 +29,15 @@ function numberReg(reg) {  // <= you can pass a value here that can be accessed 
         return newArray   // connected to top one and return the stored
 
     }
+    function clear() {
+        newArray = [];
+    }
 
     return {
         storeArray,
         filtero,
         broughBackArray,
-
-
+        clear
     }
 };
 

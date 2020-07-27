@@ -1,10 +1,44 @@
-.color {
-    border : 1px solid;
-    margin:  0.5em;
-    background-color: dodgerblue;
-    padding: 0.3em;
-    border-radius: 0.25em;
-}
+
 body {
     background-color: coral;
 }
+ ul {
+    margin: 0em;
+    padding: 0em;
+}
+
+li {
+    list-style: none;
+   
+    padding: 1em;
+    background-color: lightseagreen;
+     width: 9em; 
+    border-radius: 0.1em solid;
+    margin: 0.5em;
+    float: left;
+    border-radius: 10px; 
+};
+
+
+/* #EXTRA NOTES  */
+
+ /* .container {
+    width: 80%;
+    margin: auto;
+}
+
+.enterReg {
+    margin: 1em;
+    padding: 1em;
+}
+
+.addbtn {
+    padding: 1em;
+    margin-bottom: 1em; 
+} */
+
+/* /.color {
+     border : 1px solid;
+    margin:  0.5em;
+    background-color: dodgerblue;
+     padding: 0.3em; */

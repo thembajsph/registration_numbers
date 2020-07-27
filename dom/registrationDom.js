@@ -1,4 +1,5 @@
 const regButton = document.querySelector(".addBtn");
+const clearRegBtn = document.querySelector(".clearReg")
 const textBoxElem = document.querySelector(".enterReg");
 const dropBoxElem = document.querySelector(".dropBox");
 const theList = document.getElementById("listItem");
@@ -48,10 +49,9 @@ function addMe() {
   if (regTown !== "" && !lineDataHolder.includes(regTown) && regex) {
     instance.storeArray(regTown);
 
-
     var li = document.createElement("li")
     li.innerHTML = regTown
-    li.classList.add("color");
+    //li.classList.add("color");
     theList.appendChild(li);
 
     local();
@@ -87,21 +87,49 @@ function cleaningTowns() {
   if (currentTown) {
 
     theList.innerHTML = "";
+
     var fromFactory = instance.filtero(currentTown) //our towns we want to filter
 
     for (var i = 0; i < fromFactory.length; i++) {
 
       var li = document.createElement("li")
       li.innerHTML = fromFactory[i]
+     // li.classList.add("color");
+      theList.appendChild(li);
+    }
+
+  }
+
+  else if (currentTown == "") {
+    theList.innerHTML = "";
+
+    for (var i = 0; i < lineDataHolder.length; i++) {
+
+      var li = document.createElement("li")
+      li.innerHTML = lineDataHolder[i]
       li.classList.add("color");
       theList.appendChild(li);
-
     }
   }
 };
 
+function clearAll() {
+instance.broughBackArray();
+
+  var buttonpressed = false;
+
+  if (!buttonpressed && localStorage) { // Check if the localStorage object exists
+
+      window.localStorage.clear()  //clears the localstorage
+      instance.clear();
+      location.reload();
+
+  }
+}
+
 regButton.addEventListener("click", addMe);
 dropDownBtnElem.addEventListener("click", cleaningTowns);
+clearRegBtn.addEventListener("click", clearAll);
 
 
 
@@ -118,3 +146,4 @@ dropDownBtnElem.addEventListener("click", cleaningTowns);
 //     if (bringBack[i].startsWith(location)) {
 //       regTownArr.push(bringItBack[i])
 //     }
+
