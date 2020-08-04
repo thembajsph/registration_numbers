@@ -55,8 +55,17 @@ function addMe() {
     theList.appendChild(li);
 
     local();
-  };
+   
+   
+  }
 
+  else if (regTown === "") {
+
+    errorMessage.innerHTML =  "Insert a registration number, please!"
+    errorMessage.classList.add("red")
+  
+   
+  };
   function local() {
 
     if (lineDataHolder[regTown]) {
@@ -126,6 +135,13 @@ instance.broughBackArray();
 
   }
 }
+
+function setTimer() {
+
+  document.getElementById("errorMsg").innerHTML = "";
+  setTimeout("setTimer()", 10000);
+}
+setTimer();
 
 regButton.addEventListener("click", addMe);
 dropDownBtnElem.addEventListener("click", cleaningTowns);
